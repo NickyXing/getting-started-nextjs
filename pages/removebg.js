@@ -5,43 +5,8 @@ import Image from "next/image";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export default function Home() {
-  const [prediction, setPrediction] = useState(null);
   const [error, setError] = useState(null);
   const [removeBgOutputs, setRemoveBgOutputs] = useState(null);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch("/api/predictions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: e.target.prompt.value,
-      }),
-    });
-    let prediction = await response.json();
-    if (response.status !== 201) {
-      setError(prediction.detail);
-      return;
-    }
-    setPrediction(prediction);
-
-    while (
-      prediction.status !== "succeeded" &&
-      prediction.status !== "failed"
-    ) {
-      await sleep(1000);
-      const response = await fetch("/api/predictions/" + prediction.id);
-      prediction = await response.json();
-      if (response.status !== 200) {
-        setError(prediction.detail);
-        return;
-      }
-      console.log({ prediction });
-      setPrediction(prediction);
-    }
-  };
   // remove bg
   const removeBg = async () => {
     const response = await fetch("/api/replacebg", {
@@ -79,6 +44,43 @@ export default function Home() {
     }
   };
 
+//   upload image
+const handleUpload = async (e) => {
+    let file = e.target.files[0]
+    const formData = new FormData();
+    formData.append("file", file);
+    fetch("https://pic.anytools.me/upload", { method: "POST", body: formData })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data && data.error) {
+        throw new Error(data.error);
+        }
+        const src = window.location.origin + data[0].src;
+        uploadStatus.innerHTML = `
+        <div class="alert alert-success text-center">Successful 🥳</div>
+        <div class="input-group" style="margin-bottom: 10px">
+        <input type="text" class="form-control" id="imageUrl" value="${src}">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary copy-btn" type="button">Copy</button>
+        </div>
+        </div>
+        ${
+        file.type.startsWith("video")
+            ? `<video src="${src}" class="img-fluid mb-3" controls></video>`
+            : `<img src="${src}" class="img-fluid mb-3" alt="Uploaded Image">`
+        }
+        `;
+        document
+        .querySelector(".copy-btn")
+        .addEventListener("click", onFileUrlCopy);
+    })
+    .catch((error) => {
+        console.error(error);
+    })
+    .finally(() => {
+        
+    });
+  }
   return (
     <div className="container max-w-2xl p-5 mx-auto">
       <Head>
@@ -86,42 +88,10 @@ export default function Home() {
       </Head>
 
       <h1 className="py-6 text-2xl font-bold text-center">
-        Dream something with{" "}
-        <a href="https://replicate.com/stability-ai/sdxl?utm_source=project&utm_project=getting-started">
-          SDXL
-        </a>
+        remove background by AI
       </h1>
-
-      <form className="flex w-full" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          className="flex-grow"
-          name="prompt"
-          placeholder="Enter a prompt to display an image"
-        />
-        <button className="button" type="submit">
-          Go!
-        </button>
-      </form>
-
-      {error && <div>{error}</div>}
-
-      {prediction && (
-        <>
-          {prediction.output && (
-            <div className="mt-5 image-wrapper">
-              <Image
-                fill
-                src={prediction.output[prediction.output.length - 1]}
-                alt="output"
-                sizes="100vw"
-              />
-            </div>
-          )}
-          <p className="py-3 text-sm opacity-50">status: {prediction.status}</p>
-        </>
-      )}
       <div>
+        <input type="file" name="file" accept="image/*" onChange={handleUpload}/>
         <button className="button" onClick={removeBg}>
           removebg
         </button>
@@ -141,6 +111,8 @@ export default function Home() {
             <p className="py-3 text-sm opacity-50">status: {removeBgOutputs.status}</p>
           </>
         )}
+
+        {error && <div>{error}</div>}
       </div>
     </div>
   );
