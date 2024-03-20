@@ -7,6 +7,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 export default function Home() {
   const [prediction, setPrediction] = useState(null);
   const [error, setError] = useState(null);
+  const [removeBgOutputs, setRemoveBgOutputs] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +40,53 @@ export default function Home() {
       }
       console.log({ prediction });
       setPrediction(prediction);
+    }
+  };
+  // remove bg
+  const removeBg = async () => {
+    const response = await fetch("/api/replacebg", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        input: {
+          pixel: "512 * 512",
+          scale: 3,
+          prompt:
+            "modern sofa+ in a contemporary living room, filled with stylish decor+;modern, contemporary, sofa, living room, stylish decor",
+          image_num: 4,
+          image_path:
+            "https://replicate.delivery/pbxt/JAIk0rFAOUG00uetuiLOHPz42lBcf7QfX3xWi7TVaxMXXD4n/sofa1.png",
+          manual_seed: -1,
+          product_size: "0.5 * width",
+          guidance_scale: 7.5,
+          negative_prompt:
+            "illustration, 3d, sepia, painting, cartoons, sketch, (worst quality:2)",
+          num_inference_steps: 20,
+        },
+      }),
+    });
+    let removeBgOutputs = await response.json();
+    if (response.status !== 201) {
+      setError(removeBgOutputs.detail);
+      return;
+    }
+    setRemoveBgOutputs(removeBgOutputs);
+
+    while (
+      removeBgOutputs.status !== "succeeded" &&
+      removeBgOutputs.status !== "failed"
+    ) {
+      await sleep(1000);
+      const response = await fetch("/api/replacebg/" + prediction.id);
+      removeBgOutputs = await response.json();
+      if (response.status !== 200) {
+        setError(removeBgOutputs.detail);
+        return;
+      }
+      console.log({ removeBgOutputs });
+      setRemoveBgOutputs(removeBgOutputs);
     }
   };
 
@@ -84,6 +132,11 @@ export default function Home() {
           <p className="py-3 text-sm opacity-50">status: {prediction.status}</p>
         </>
       )}
+      <div>
+        <button className="button" onClick={removeBg}>
+          removebg
+        </button>
+      </div>
     </div>
   );
 }
