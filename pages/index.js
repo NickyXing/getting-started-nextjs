@@ -11,6 +11,7 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null)
     const response = await fetch("/api/predictions", {
       method: "POST",
       headers: {
@@ -82,14 +83,11 @@ export default function Home() {
   return (
     <div className="container max-w-2xl p-5 mx-auto">
       <Head>
-        <title>Replicate + Next.js</title>
+        <title>SDXL文生图</title>
       </Head>
 
       <h1 className="py-6 text-2xl font-bold text-center">
-        Dream something with{" "}
-        <a href="https://replicate.com/stability-ai/sdxl?utm_source=project&utm_project=getting-started">
-          SDXL
-        </a>
+        描述你想生成的图片
       </h1>
 
       <form className="flex w-full" onSubmit={handleSubmit}>
@@ -97,10 +95,10 @@ export default function Home() {
           type="text"
           className="flex-grow"
           name="prompt"
-          placeholder="Enter a prompt to display an image"
+          placeholder="输入prompt来描述图片"
         />
         <button className="button" type="submit">
-          Go!
+          生成
         </button>
       </form>
 
@@ -118,30 +116,32 @@ export default function Home() {
               />
             </div>
           )}
-          <p className="py-3 text-sm opacity-50">status: {prediction.status}</p>
+          <p className="py-3 text-sm opacity-50">处理状态: {prediction.status}</p>
+          <div>
+            {prediction.output && (
+              <button className="button" onClick={removeBg}>
+                自动移除背景
+              </button>
+            )}
+            {removeBgOutputs && (
+              <>
+                {removeBgOutputs.output && (
+                  <div className="mt-5 image-wrapper">
+                    <Image
+                      fill
+                      src={removeBgOutputs.output}
+                      alt="output"
+                      sizes="100vw"
+                    />
+                  </div>
+                )}
+                <p className="py-3 text-sm opacity-50">处理状态: {removeBgOutputs.status}</p>
+              </>
+            )}
+          </div>
         </>
       )}
-      <div>
-        <button className="button" onClick={removeBg}>
-          removebg
-        </button>
-
-        {removeBgOutputs && (
-          <>
-            {removeBgOutputs.output && (
-              <div className="mt-5 image-wrapper">
-                <Image
-                  fill
-                  src={removeBgOutputs.output}
-                  alt="output"
-                  sizes="100vw"
-                />
-              </div>
-            )}
-            <p className="py-3 text-sm opacity-50">status: {removeBgOutputs.status}</p>
-          </>
-        )}
-      </div>
+      
     </div>
   );
 }
