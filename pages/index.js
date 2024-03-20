@@ -52,7 +52,7 @@ export default function Home() {
       body: JSON.stringify({
         input: {
           image:
-            "https://img2.baidu.com/it/u=1124591381,1037079365&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=753",
+          prediction.output[0],
         },
       }),
     });
