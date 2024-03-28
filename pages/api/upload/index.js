@@ -8,7 +8,7 @@ export const config = {
   },
 };
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   const form = new formidable.IncomingForm();
   form.parse(req, async (err, fields, files) => {
     if (files.file) {
