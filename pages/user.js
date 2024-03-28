@@ -1,4 +1,4 @@
-import pool from './db';
+import pool from '../db.mjs';
 
 const createUser = async (email, password, name) => {
   try {

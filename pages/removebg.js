@@ -48,7 +48,7 @@ export default function Home() {
   const handleUpload = async (e) => {
     let file = e.target.files[0];
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("file", file, 'test.png');
     fetch("/api/upload", { method: "POST", body: formData })
       .then((response) => {
         console.log(response);
