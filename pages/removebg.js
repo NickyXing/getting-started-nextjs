@@ -7,6 +7,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 export default function Home() {
   const [error, setError] = useState(null);
   const [removeBgOutputs, setRemoveBgOutputs] = useState(null);
+  const [filePath, setFilePath] = useState(null);
   // remove bg
   const removeBg = async () => {
     const response = await fetch("/api/replacebg", {
@@ -16,8 +17,7 @@ export default function Home() {
       },
       body: JSON.stringify({
         input: {
-          image:
-            "https://img2.baidu.com/it/u=1124591381,1037079365&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=753",
+          image: filePath
         },
       }),
     });
@@ -48,20 +48,11 @@ export default function Home() {
   const handleUpload = async (e) => {
     let file = e.target.files[0];
     const formData = new FormData();
-    formData.append("file", file, 'test.png');
-    fetch("/api/upload", { method: "POST", body: formData })
-      .then((response) => {
-        console.log(response);
-      })
-      .then((data) => {
-        if (data && data.error) {
-          throw new Error(data.error);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {});
+    formData.append("file", file);
+    const response = await fetch("/api/upload", { method: "POST", body: formData })
+    const result = await response.json();
+    console.log(result);
+    setFilePath(result.filePath)
   };
   return (
     <div className="container max-w-2xl p-5 mx-auto">
