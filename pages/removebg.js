@@ -52,7 +52,11 @@ export default function Home() {
     const response = await fetch("/api/upload", { method: "POST", body: formData })
     const result = await response.json();
     console.log(result);
-    setFilePath(result.filePath)
+    if (result.success && result.data.success) {
+      setFilePath(result.data.url)
+    } else {
+      setError(result)
+    }
   };
   return (
     <div className="container max-w-2xl p-5 mx-auto">
