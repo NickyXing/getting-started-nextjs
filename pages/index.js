@@ -25,7 +25,9 @@ export default function Home() {
                   />
                 </svg>
               </a>
-              <span className="text-lg font-bold text-transparent bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text">FancyImg</span>
+              <span className="text-lg font-bold text-transparent bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text">
+                FancyImg
+              </span>
             </div>
 
             <div class="md:flex md:items-center md:gap-12">
@@ -135,16 +137,22 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <section class="bg-white text-gray-700 bg-no-repeat" style={{background: 'url("https://assets.remove-bg.ai/images/bg.webp")', 'background-size': '100% 100%'}}>
+      <section
+        class="bg-white text-gray-700 bg-no-repeat"
+        style={{
+          background: 'url("https://assets.remove-bg.ai/images/bg.webp")',
+          "background-size": "100% 100%",
+        }}
+      >
         <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center pt-16">
           <div class="mx-auto max-w-3xl text-center">
             <h1 class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
-                <span class="sm:block pb-1">Your Images</span>
-                <span class="sm:block pb-2">Perfected by fancyImg AI</span>
+              <span class="sm:block pb-1">Your Images</span>
+              <span class="sm:block pb-2">Perfected by fancyImg AI</span>
             </h1>
 
             <p class="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
-            Elevate Your Visuals: AI-Powered Image Perfection
+              Elevate Your Visuals: AI-Powered Image Perfection
             </p>
 
             <div class="mt-8 flex flex-wrap justify-center gap-4">
@@ -164,6 +172,38 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2">
+        <div class="p-8 md:p-12 lg:px-16 lg:py-24">
+          <div class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
+            <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit
+            </h2>
+
+            <p class="hidden text-gray-500 md:mt-4 md:block">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et,
+              egestas tempus tellus etiam sed. Quam a scelerisque amet
+              ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat
+              quisque ut interdum tincidunt duis.
+            </p>
+
+            <div class="mt-4 md:mt-8">
+              <a
+                href="#"
+                class="inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
+              >
+                Get Started Today
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <img
+          alt=""
+          src="https://images.unsplash.com/photo-1464582883107-8adf2dca8a9f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+          class="h-56 w-full object-cover sm:h-full"
+        />
       </section>
     </div>
   );
