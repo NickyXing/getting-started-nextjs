@@ -1,0 +1,108 @@
+:root {
+    --handle-bg: #f2f2f2;
+    --handle-width: 30px;
+    --handle-height: 30px;
+    --handle-chevron-size: 20px;
+    --handle-line-bg: #f2f2f2;
+    --handle-line-width: 2px;
+    --handle-line-height: 100%;
+    --z-index-handle: 5;
+    --z-index-handle-line: 4;
+    --z-index-range-input: 6;
+}
+.com_container{
+    max-width: 800px;
+ 
+}
+.compare-wrapper {
+    position: relative;
+}
+ 
+.compare,
+.compare__content {
+    position: relative;
+    height: 100%;
+}
+/* 因为我的图片有一个是去完背景和没去背景的对比，所以我给他添加了一个背景图，不需要的小伙伴去掉就好了！ */
+.compare_bg{
+    /* background-image: url(../../public/imgs/bgremove_bg.png); */
+ 
+}
+ 
+.compare-overlay {
+    position: absolute;
+    overflow: hidden;
+    height: 100%;
+    top: 0;
+}
+ 
+.compare-overlay__content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+ 
+.handle__arrow {
+    position: absolute;
+    width: var(--handle-chevron-size);
+}
+ 
+.handle__arrow--l {
+    left: 0;
+}
+ 
+.handle__arrow--r {
+    right: 0;
+}
+ 
+.handle-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: var(--z-index-handle);
+}
+ 
+.handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: var(--handle-bg);
+    border-radius: 50%;
+    width: var(--handle-width);
+    height: var(--handle-height);
+}
+ 
+.handle-line {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: var(--handle-line-width);
+    height: 100%;
+    background: var(--handle-line-bg);
+    z-index: var(--z-index-handle-line);
+    pointer-events: none;
+    user-select: none;
+}
+ 
+.compare__range {
+    position: absolute;
+    cursor: ew-resize;
+    left: calc(var(--handle-width) / -2);
+    width: calc(100% + var(--handle-width));
+    transform: translatey(-50%);
+    top: calc(50%);
+    z-index: var(--z-index-range-input);
+    -webkit-appearance: none;
+    height: var(--handle-height);
+    background: rgba(0, 0, 0, .4);
+    opacity: .0;
+}
+ 
+.object-fit-cover {
+    object-fit: cover;
+}

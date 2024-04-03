@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('./ImgPrepare.css');
 
 input {
   @apply border;
@@ -16,7 +17,7 @@ input {
 }
 
 .button {
-  @apply bg-black text-white rounded-r-md inline-block px-5 py-3;
+  @apply inline-block px-5 py-3 text-white bg-black rounded-r-md;
 }
 
 .image-wrapper {
