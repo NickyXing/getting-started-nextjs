@@ -6,15 +6,18 @@ export default function Home() {
   const handleSubmit = async (e) => {};
 
   return (
-    <div>
-      <header class="bg-white fixed w-full shadow-md">
-        <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-          <div class="flex h-16 items-center justify-between">
-            <div class="flex-1 md:flex md:items-center md:gap-12">
-              <a class="block text-blue-500" href="#">
-                <span class="sr-only">Home</span>
+    <div className="bg-no-repeat" style={{
+      background: 'url("https://assets.remove-bg.ai/images/bg.webp")',
+      "background-size": "100% 100%",
+    }}>
+      <header className="fixed w-full bg-white shadow-md">
+        <div className="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex-1 md:flex md:items-center md:gap-12">
+              <a className="block text-blue-500" href="#">
+                <span className="sr-only">Home</span>
                 <svg
-                  class="h-8"
+                  className="h-8"
                   viewBox="0 0 28 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -30,83 +33,51 @@ export default function Home() {
               </span>
             </div>
 
-            <div class="md:flex md:items-center md:gap-12">
-              <nav aria-label="Global" class="hidden md:block">
-                <ul class="flex items-center gap-6 text-sm">
+            <div className="md:flex md:items-center md:gap-12">
+              <nav aria-label="Global" className="hidden md:block">
+                <ul className="flex items-center gap-6 text-sm">
                   <li>
                     <a
-                      class="text-gray-500 transition hover:text-gray-500/75"
-                      href="#"
-                    >
-                      {" "}
-                      About{" "}
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      class="text-gray-500 transition hover:text-gray-500/75"
-                      href="#"
-                    >
-                      {" "}
-                      Careers{" "}
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      class="text-gray-500 transition hover:text-gray-500/75"
-                      href="#"
-                    >
-                      {" "}
-                      History{" "}
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      class="text-gray-500 transition hover:text-gray-500/75"
-                      href="#"
-                    >
-                      {" "}
-                      Services{" "}
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      class="text-gray-500 transition hover:text-gray-500/75"
-                      href="#"
-                    >
-                      {" "}
-                      Projects{" "}
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      class="text-gray-500 transition hover:text-gray-500/75"
+                      className="text-gray-500 transition hover:text-gray-500/75"
                       href="#"
                     >
                       {" "}
                       Blog{" "}
                     </a>
                   </li>
+                  <li>
+                    <a
+                      className="text-gray-500 transition hover:text-gray-500/75"
+                      href="#"
+                    >
+                      {" "}
+                      Price{" "}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="text-gray-500 transition hover:text-gray-500/75"
+                      href="#"
+                    >
+                      {" "}
+                      About{" "}
+                    </a>
+                  </li>
                 </ul>
               </nav>
 
-              <div class="flex items-center gap-4">
-                <div class="sm:flex sm:gap-4">
+              <div className="flex items-center gap-4">
+                <div className="sm:flex sm:gap-4">
                   <a
-                    class="rounded-md bg-blue-500 px-5 py-2.5 text-sm font-medium text-white shadow"
+                    className="rounded-md bg-gradient-to-r from-blue-500 to-purple-600 px-7 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring active:text-opacity-75"
                     href="#"
                   >
                     Login
                   </a>
 
-                  <div class="hidden sm:flex">
+                  <div className="hidden sm:flex">
                     <a
-                      class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-blue-500"
+                      className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-blue-500"
                       href="#"
                     >
                       Register
@@ -114,11 +85,11 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div class="block md:hidden">
-                  <button class="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+                <div className="block md:hidden">
+                  <button className="p-2 text-gray-600 transition bg-gray-100 rounded hover:text-gray-600/75">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5"
+                      className="w-5 h-5"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -137,74 +108,76 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <section
-        class="bg-white text-gray-700 bg-no-repeat"
-        style={{
-          background: 'url("https://assets.remove-bg.ai/images/bg.webp")',
-          "background-size": "100% 100%",
-        }}
-      >
-        <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center pt-16">
-          <div class="mx-auto max-w-3xl text-center">
-            <h1 class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
-              <span class="sm:block pb-1">Your Images</span>
-              <span class="sm:block pb-2">Perfected by fancyImg AI</span>
-            </h1>
+      <div className="container">
+        <section
+          className="text-gray-700 bg-transparent"
+        >
+          <div className="max-w-screen-xl px-4 py-32 pt-16 mx-auto lg:flex lg:h-screen lg:items-center">
+            <div className="max-w-3xl mx-auto text-center">
+              <h1 className="text-3xl font-extrabold text-transparent bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text sm:text-5xl">
+                <span className="pb-1 sm:block">Your Images</span>
+                <span className="pb-2 sm:block">Perfected by FancyImg AI</span>
+              </h1>
 
-            <p class="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
-              Elevate Your Visuals: AI-Powered Image Perfection
-            </p>
+              <p className="max-w-xl mx-auto mt-4 sm:text-xl/relaxed">
+                Elevate Your Visuals: AI-Powered Image Perfection
+              </p>
 
-            <div class="mt-8 flex flex-wrap justify-center gap-4">
-              <a
-                class="block w-full rounded border bg-gradient-to-r from-blue-500 to-purple-600 px-12 py-3 text-sm font-medium text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-                href="#"
-              >
-                Get Started
-              </a>
+              <div className="flex flex-wrap justify-center gap-4 mt-8">
+                <a
+                  className="block w-full px-12 py-3 text-sm font-medium text-white border rounded bg-gradient-to-r from-blue-500 to-purple-600 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                  href="#"
+                >
+                  Get Started
+                </a>
 
-              <a
-                class="block w-full rounded border border-purple-600 px-12 py-3 text-sm font-medium text-purple-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-                href="#"
-              >
-                Learn More
-              </a>
+                <a
+                  className="block w-full px-12 py-3 text-sm font-medium text-purple-600 border border-purple-600 rounded focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+                  href="#"
+                >
+                  Learn More
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2">
-        <div class="p-8 md:p-12 lg:px-16 lg:py-24">
-          <div class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-            <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit
-            </h2>
+        <section className="justify-between pt-5 pb-5 overflow-hidden bg-transparent sm:grid sm:grid-cols-2">
+          <div className="p-8 md:p-12 lg:px-16 lg:py-24">
+            <div className="max-w-xl mx-auto text-center ltr:sm:text-left rtl:sm:text-right">
+              <h2 className="text-2xl font-bold text-gray-900 md:text-3xl">
+                Remove Backgrounds in a Snap
+              </h2>
 
-            <p class="hidden text-gray-500 md:mt-4 md:block">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et,
-              egestas tempus tellus etiam sed. Quam a scelerisque amet
-              ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat
-              quisque ut interdum tincidunt duis.
-            </p>
+              <p className="hidden text-gray-500 md:mt-4 md:block">
+                FancyImg's advanced AI algorithms analyze your images and
+                accurately identify the subject, separating it from the
+                background with unparalleled precision. Whether it's a product
+                shot, a portrait, or a complex scene, our tool can handle it all
+                with ease.
+              </p>
 
-            <div class="mt-4 md:mt-8">
-              <a
-                href="#"
-                class="inline-block rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
-              >
-                Get Started Today
-              </a>
+              <div className="mt-4 md:mt-8">
+                <a
+                  href="#"
+                  className="inline-block px-12 py-3 text-sm font-medium text-white transition rounded bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring focus:ring-yellow-400"
+                >
+                  Get Started Today
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <img
-          alt=""
-          src="https://images.unsplash.com/photo-1464582883107-8adf2dca8a9f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          class="h-56 w-full object-cover sm:h-full"
-        />
-      </section>
+          <video
+            alt=""
+            src="https://storyblok-cdn.photoroom.com/f/191576/x/e866fd84ee/removebackground-animation_h-264.mp4"
+            muted
+            autoPlay
+            loop
+            className="object-cover w-9/12 rounded"
+          />
+        </section>
+      </div>
     </div>
   );
 }
