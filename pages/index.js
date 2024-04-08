@@ -9,7 +9,7 @@ export default function Home() {
     <div
       className="bg-no-repeat"
       style={{
-        background: 'url("https://assets.remove-bg.ai/images/bg.webp")',
+        background: "url('https://assets.remove-bg.ai/images/bg.webp')",
         "background-size": "100% 100%",
       }}
     >
@@ -152,9 +152,9 @@ export default function Home() {
               </h2>
 
               <p className="hidden text-gray-500 md:mt-4 md:block">
-                Fancyimg's advanced AI algorithms analyze your images and
+                Fancyimg"s advanced AI algorithms analyze your images and
                 accurately identify the subject, separating it from the
-                background with unparalleled precision. Whether it's a product
+                background with unparalleled precision. Whether it"s a product
                 shot, a portrait, or a complex scene, our tool can handle it all
                 with ease.
               </p>
@@ -190,9 +190,9 @@ export default function Home() {
               </h2>
 
               <p className="hidden text-gray-500 md:mt-4 md:block">
-                Fancyimg's advanced AI algorithms analyze your images and
+                Fancyimg"s advanced AI algorithms analyze your images and
                 accurately identify the subject, separating it from the
-                background with unparalleled precision. Whether it's a product
+                background with unparalleled precision. Whether it"s a product
                 shot, a portrait, or a complex scene, our tool can handle it all
                 with ease.
               </p>
@@ -217,9 +217,9 @@ export default function Home() {
               </h2>
 
               <p className="hidden text-gray-500 md:mt-4 md:block">
-                Fancyimg's advanced AI algorithms analyze your images and
+                Fancyimg"s advanced AI algorithms analyze your images and
                 accurately identify the subject, separating it from the
-                background with unparalleled precision. Whether it's a product
+                background with unparalleled precision. Whether it"s a product
                 shot, a portrait, or a complex scene, our tool can handle it all
                 with ease.
               </p>
@@ -255,9 +255,9 @@ export default function Home() {
               </h2>
 
               <p className="hidden text-gray-500 md:mt-4 md:block">
-                Fancyimg's advanced AI algorithms analyze your images and
+                Fancyimg"s advanced AI algorithms analyze your images and
                 accurately identify the subject, separating it from the
-                background with unparalleled precision. Whether it's a product
+                background with unparalleled precision. Whether it"s a product
                 shot, a portrait, or a complex scene, our tool can handle it all
                 with ease.
               </p>
