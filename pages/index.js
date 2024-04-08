@@ -1,19 +1,14 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 export default function Home() {
   const [error, setError] = useState(null);
-
+  useEffect(()=>{
+    
+  })
   const handleSubmit = async (e) => {};
 
   return (
-    <div
-      className="bg-no-repeat"
-      style={{
-        background: "url('https://assets.remove-bg.ai/images/bg.webp')",
-        "background-size": "100% 100%",
-      }}
-    >
-      <header className="fixed w-full bg-white shadow-md">
+    <div>
+      <header className="fixed z-30 w-full transition-all shadow-md bg-white/50 backdrop-blur-xl">
         <div className="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex-1 md:flex md:items-center md:gap-12">
@@ -111,38 +106,39 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <div className="container">
-        {/* 首屏 */}
-        <section className="text-gray-700 bg-transparent">
-          <div className="max-w-screen-xl px-4 py-32 pt-16 mx-auto lg:flex lg:h-screen lg:items-center">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-3xl font-extrabold text-transparent bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text sm:text-5xl">
-                <span className="pb-1 sm:block">Your Images</span>
-                <span className="pb-2 sm:block">Perfected by Fancyimg AI</span>
-              </h1>
+      
+      {/* 首屏 */}
+      <section className="text-gray-700 bg-gradient-to-br from-cyan-100 via-white to-purple-100">
+        <div className="max-w-screen-xl px-4 py-32 pt-16 mx-auto lg:flex lg:h-screen lg:items-center">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-3xl font-extrabold text-transparent bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text sm:text-5xl">
+              <span className="pb-1 sm:block">Your Images</span>
+              <span className="pb-2 sm:block">Perfected by Fancyimg AI</span>
+            </h1>
 
-              <p className="max-w-xl mx-auto mt-4 sm:text-xl/relaxed">
-                Elevate Your Visuals: AI-Powered Image Perfection
-              </p>
+            <p className="max-w-xl mx-auto mt-4 sm:text-xl/relaxed">
+              Elevate Your Visuals: AI-Powered Image Perfection
+            </p>
 
-              <div className="flex flex-wrap justify-center gap-4 mt-8">
-                <a
-                  className="block w-full px-12 py-3 text-sm font-medium text-white border rounded bg-gradient-to-r from-blue-500 to-purple-600 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-                  href="#"
-                >
-                  Get Started
-                </a>
+            <div className="flex flex-wrap justify-center gap-4 mt-8">
+              <a
+                className="block w-full px-12 py-3 text-sm font-medium text-white border rounded bg-gradient-to-r from-blue-500 to-purple-600 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                href="#"
+              >
+                Get Started
+              </a>
 
-                <a
-                  className="block w-full px-12 py-3 text-sm font-medium text-purple-600 border border-purple-600 rounded focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-                  href="#"
-                >
-                  Learn More
-                </a>
-              </div>
+              <a
+                className="block w-full px-12 py-3 text-sm font-medium text-purple-600 border border-purple-600 rounded focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+                href="#"
+              >
+                Learn More
+              </a>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+      <div className="container">
         {/* 产品介绍 */}
         <section className="pt-5 pb-5 overflow-hidden bg-transparent justify-items-center sm:grid sm:grid-cols-2">
           <div className="p-8 md:p-12 lg:px-16 lg:py-24">

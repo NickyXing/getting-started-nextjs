@@ -35,3 +35,8 @@ input {
   width: 3.5rem;
   height: 3.5rem;
 }
+.img-bg {
+  background-image: url(https://assets.remove-bg.ai/images/bg.webp);
+  background-size: cover;
+  
+}
