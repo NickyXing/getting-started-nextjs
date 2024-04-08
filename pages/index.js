@@ -110,13 +110,13 @@ export default function Home() {
       {/* 首屏 */}
       <section className="text-gray-700 bg-gradient-to-br from-cyan-100 via-white to-purple-100">
         <div className="max-w-screen-xl px-4 py-32 pt-16 mx-auto lg:flex lg:h-screen lg:items-center">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl font-extrabold text-transparent bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text sm:text-5xl">
+          <div className="mx-auto text-center max-w-7xl">
+            <h1 className="font-extrabold text-black text-7xl sm:text-5xl">
               <span className="pb-1 sm:block">Your Images</span>
-              <span className="pb-2 sm:block">Perfected by Fancyimg AI</span>
+              <span className="pb-2 sm:block">Perfected by <span className="text-transparent bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text">Fancyimg AI</span></span>
             </h1>
 
-            <p className="max-w-xl mx-auto mt-4 sm:text-xl/relaxed">
+            <p className="max-w-xl mx-auto mt-4 text-gray-500 sm:text-xl/relaxed">
               Elevate Your Visuals: AI-Powered Image Perfection
             </p>
 

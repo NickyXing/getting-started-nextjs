@@ -35,3 +35,7 @@ input {
   width: 3.5rem;
   height: 3.5rem;
 }
+.animate-down {
+  animation-delay: 0.15s;
+  animation-fill-mode: forwards;
+}
