@@ -17,6 +17,7 @@
     "formidable": "^3.5.1",
     "next": "14.0.3",
     "pg": "^8.11.3",
+    "polotno": "^2.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "replicate": "^0.22.0",
