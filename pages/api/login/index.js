@@ -3,24 +3,24 @@ const crypto = require('crypto');
 import jwt from 'jsonwebtoken';
 export default async function handler(req, res) {
   try {
-    const email = req.query.email;
-    const password = req.query.password;
+    const email = req.body.email;
+    const password = req.body.password;
     console.log(email, password);
     // 1. 验证输入参数
     if (!email || !password) {
-      return res.status(200).json({ error: 'Email and password are required' });
+      return res.status(201).json({ error: 'Email and password are required' });
     }
 
     // 2. 查询用户信息
     const user = await sql`SELECT * FROM fancy_user WHERE email = ${email}`;
     console.log(user.rows);
     if (user.rows.length === 0) {
-      return res.status(200).json({ error: 'Invalid email or password' });
+      return res.status(201).json({ error: 'Invalid email or password' });
     }
 
     // 3. 验证密码
     if (user.rows[0].password !== hashPassword(password)) {
-      return res.status(200).json({ error: 'Invalid email or password' });
+      return res.status(201).json({ error: 'Invalid email or password' });
     }
 
     // 4. 生成 JWT 令牌

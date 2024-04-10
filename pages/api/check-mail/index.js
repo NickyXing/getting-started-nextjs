@@ -13,32 +13,64 @@ const transporter = nodemailer.createTransport({
 });
 export default async function handler(req, res) {
   try {
-    const email = req.query.email;
-
-    const users = await sql`SELECT * FROM fancy_user;`;
-    console.log(users);
-    for (let i = 0; i < users.rows.length; i++) {
-      if (users.rows[i].email === email) {
-        return res.status(200).json({
-          message: "Email already exists",
+    if (req.method !== 'POST') {
+        return res.status(405).json({
+          message: "Method not allowed",
         });
-      }
+    }
+    const email = req.body.email;
+
+    // const users = await sql`SELECT * FROM fancy_user;`;
+    // console.log(users);
+    // for (let i = 0; i < users.rows.length; i++) {
+    //   if (users.rows[i].email === email) {
+    //     return res.status(200).json({
+    //       message: "Email already exists",
+    //     });
+    //   }
+    // }
+
+    const result = await sql`
+        SELECT COUNT(*) 
+        FROM fancy_user
+        WHERE email = ${email}
+        `;
+        console.log('resultresultresult: '+ JSON.stringify(result));
+        if (result.rows[0].count > 0) {
+        return res.status(200).json({
+            message: "Email already exists",
+        });
     }
 
     // 生成 6 位数字验证码
     const verificationCode = Math.floor(100000 + Math.random() * 900000);
+    
+    // 判断是否存在记录
+    const existingRecord = await sql`
+        SELECT COUNT(*) FROM check_mail WHERE email = ${email}
+    `;
+
+    if (existingRecord.rows[0].count > 0) {
+        // 更新现有记录
+        await sql`
+            UPDATE check_mail 
+            SET mailcode = ${verificationCode}
+            WHERE email = ${email}
+        `;
+    } else {
+        // 插入新记录
+        await sql`
+            INSERT INTO check_mail (email, mailcode)
+            VALUES (${email}, ${verificationCode})
+        `;
+    }
     // 发送验证码邮件
     await transporter.sendMail({
-      from: 'fancyimg@fancyimg.com',
-      to: email,
-      subject: 'Verification Code',
-      text: `Your verification code is: ${verificationCode}`
+        from: 'fancyimg@fancyimg.com',
+        to: email,
+        subject: 'Verification Code',
+        text: `Your verification code is: ${verificationCode}`
     });
-
-
-
-    await sql`INSERT INTO check_mail (email, mailcode)
-    VALUES (${email}, ${verificationCode});`;
     res.statusCode = 201;
     return res.end(JSON.stringify({status: "mail code send success"}));
   } catch (error) {

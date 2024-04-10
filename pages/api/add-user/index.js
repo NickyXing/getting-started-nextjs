@@ -2,11 +2,11 @@ import { sql } from "@vercel/postgres";
 const crypto = require('crypto');
 export default async function handler(req, res) {
   try {
-    const email = req.query.email;
-    const password = req.query.password;
-    const nickname = req.query.nickname || '';
-    const avatar = req.query.avatar || '';
-    const mailcode = req.query.mailcode
+    const email = req.body.email;
+    const password = req.body.password;
+    const nickname = req.body.nickname || '';
+    const avatar = req.body.avatar || '';
+    const mailcode = req.body.mailcode
 
     // const users = await sql`SELECT * FROM fancy_user;`;
     // console.log(users);

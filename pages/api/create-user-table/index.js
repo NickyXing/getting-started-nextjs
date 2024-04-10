@@ -26,7 +26,7 @@ export default async function handler(req, res) {
       mailcode VARCHAR(6)
     )
   `;
-
+  // await sql`DROP TABLE check_mail;`
   // const result = await sql`
   // CREATE TABLE IF NOT EXISTS check_mail (
   //     id SERIAL PRIMARY KEY,

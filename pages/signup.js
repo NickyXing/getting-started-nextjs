@@ -1,14 +1,89 @@
+import Link from "next/link";
+import { useState } from "react";
 export default function IndexPage() {
+  const [signResult, setSignResult] = useState(false);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [error, setError] = useState(null);
+  const [signupResult, setSignupResult] = useState(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    const response = await fetch("/api/check-mail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: e.target.email.value,
+      }),
+    });
+    let result = await response.json();
+    if (response.status !== 201) {
+      setError(result.detail);
+      return;
+    }
+    setEmail(e.target.email.value);
+    setPassword(e.target.password.value);
+    setSignResult(true);
+  };
+
+  const confirmSignup = async (e) => {
+    e.preventDefault();
+    setError(null);
+    const response = await fetch("/api/add-user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        mailcode: e.target.code.value
+      }),
+    });
+    let result = await response.json();
+    if (response.status !== 201) {
+      setError(result.detail);
+      return;
+    }
+    // 登录
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+    let loginResult = await res.json();
+    console.log(res);
+    console.log(loginResult);
+    if (res.status !== 200) {
+      setError(result.detail);
+      return;
+    }
+    
+    localStorage.setItem("token", loginResult.token)
+    localStorage.setItem("user", JSON.stringify(loginResult.user))
+    setSignupResult(true)
+    setTimeout(() => {
+      window.location.href = "/"
+    }, 1000);
+    
+  };
   return (
     <div>
-      <section class="bg-white">
-        <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
-          <section class="relative flex h-32 items-end  bg-gradient-to-br from-cyan-100 via-white to-purple-100 lg:col-span-5 lg:h-full xl:col-span-6">
-            <div class="hidden lg:relative lg:block lg:p-12">
-              <a class="block text-black" href="#">
-                <span class="sr-only">Home</span>
+      <section className="bg-white">
+        <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
+          <section className="relative flex items-end h-32 bg-gradient-to-br from-cyan-100 via-white to-purple-100 lg:col-span-5 lg:h-full xl:col-span-6">
+            <div className="hidden lg:relative lg:block lg:p-12">
+              <Link className="block text-black" href="#">
+                <span className="sr-only">Home</span>
                 <svg
-                  class="h-8 sm:h-10"
+                  className="h-8 sm:h-10"
                   viewBox="0 0 28 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -18,29 +93,29 @@ export default function IndexPage() {
                     fill="currentColor"
                   />
                 </svg>
-              </a>
+              </Link>
 
-              <h2 class="mt-6 text-2xl font-bold text-black sm:text-3xl md:text-4xl">
+              <h2 className="mt-6 text-2xl font-bold text-black sm:text-3xl md:text-4xl">
                 Welcome to Fancyimg
               </h2>
 
-              <p class="mt-4 leading-relaxed text-black/90">
+              <p className="mt-4 leading-relaxed text-black/90">
                 Envision your Fancy photos. Unleash your creative vision. Bring
                 your imagination to life.
               </p>
             </div>
           </section>
 
-          <main class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-            <div class="max-w-xl lg:max-w-3xl">
-              <div class="relative -mt-16 block lg:hidden">
-                <a
-                  class="inline-flex size-16 items-center justify-center rounded-full bg-white text-blue-600 sm:size-20"
+          <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+            <div className="max-w-xl lg:max-w-3xl">
+              <div className="relative block -mt-16 lg:hidden">
+                <Link
+                  className="inline-flex items-center justify-center text-blue-600 bg-white rounded-full size-16 sm:size-20"
                   href="#"
                 >
-                  <span class="sr-only">Home</span>
+                  <span className="sr-only">Home</span>
                   <svg
-                    class="h-8 sm:h-10"
+                    className="h-8 sm:h-10"
                     viewBox="0 0 28 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -50,83 +125,134 @@ export default function IndexPage() {
                       fill="currentColor"
                     />
                   </svg>
-                </a>
+                </Link>
 
-                <h1 class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+                <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
                   Welcome to Fancyimg
                 </h1>
 
-                <p class="mt-4 leading-relaxed text-gray-500">
+                <p className="mt-4 leading-relaxed text-gray-500">
                   Envision your Fancy photos. Unleash your creative vision.
                   Bring your imagination to life.
                 </p>
               </div>
-
-              <form action="#" class="mt-8 grid grid-cols-6 gap-6">
-                <div class="col-span-6">
-                  <label
-                    for="Email"
-                    class="block text-sm font-medium text-gray-700"
-                  >
-                    {" "}
-                    Email{" "}
-                  </label>
-
-                  <input
-                    type="email"
-                    id="Email"
-                    name="email"
-                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
-                </div>
-
-                <div class="col-span-6 sm:col-span-3">
-                  <label
-                    for="Password"
-                    class="block text-sm font-medium text-gray-700"
-                  >
-                    {" "}
-                    Password{" "}
-                  </label>
-
-                  <input
-                    type="password"
-                    id="Password"
-                    name="password"
-                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
-                </div>
-
-                <div class="col-span-6 sm:col-span-3">
-                  <label
-                    for="PasswordConfirmation"
-                    class="block text-sm font-medium text-gray-700"
-                  >
-                    Password Confirmation
-                  </label>
-
-                  <input
-                    type="password"
-                    id="PasswordConfirmation"
-                    name="password_confirmation"
-                    class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                  />
-                </div>
-
-                <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-                  <button class="inline-block shrink-0 rounded-md border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
+              {!signResult && (
+                <div>
+                  <div className="text-2xl font-bold text-gray-900 ">
                     Sign up
-                  </button>
+                  </div>
+                  <form
+                    action="#"
+                    className="grid grid-cols-6 gap-6 mt-8"
+                    onSubmit={handleSubmit}
+                  >
+                    <div className="col-span-6">
+                      <label
+                        for="Email"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        {" "}
+                        Email{" "}
+                      </label>
 
-                  <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-                    Already have an account? &nbsp;
-                    <a href="/login" class="text-gray-700 underline">
-                      Log in
-                    </a>
-                    .
-                  </p>
+                      <input
+                        type="email"
+                        id="Email"
+                        name="email"
+                        className="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        for="Password"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        {" "}
+                        Password{" "}
+                      </label>
+
+                      <input
+                        type="password"
+                        id="Password"
+                        name="password"
+                        className="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        for="PasswordConfirmation"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Password Confirmation
+                      </label>
+
+                      <input
+                        type="password"
+                        id="PasswordConfirmation"
+                        name="password_confirmation"
+                        className="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
+                      <button
+                        type="submit"
+                        className="inline-block px-12 py-3 text-sm font-medium text-white transition bg-indigo-600 border border-indigo-600 rounded-md shrink-0 hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+                      >
+                        Sign up
+                      </button>
+
+                      <p className="mt-4 text-sm text-gray-500 sm:mt-0">
+                        Already have an account? &nbsp;
+                        <Link href="/login" className="text-gray-700 underline">
+                          Log in
+                        </Link>
+                        .
+                      </p>
+                    </div>
+                  </form>
                 </div>
-              </form>
+              )}
+              {signResult && (
+                <div>
+                  <div className="text-2xl font-bold text-gray-900 ">
+                    Almost there! Just one more step left...
+                  </div>
+                  <div className="text-gray-900 ">We have sent a six-digit verification code to your email. Please enter the verification code to confirm your email account.</div>
+                  <form
+                    action="#"
+                    className="grid grid-cols-6 gap-6 mt-8"
+                    onSubmit={confirmSignup}
+                  >
+                    <div className="col-span-6">
+                      <label
+                        for="code"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        {" "}
+                        verification code{" "}
+                      </label>
+
+                      <input
+                        type="text"
+                        id="code"
+                        name="code"
+                        className="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
+                      />
+                    </div>
+                    <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
+                      <button
+                        type="submit"
+                        className="inline-block px-12 py-3 text-sm font-medium text-white transition bg-indigo-600 border border-indigo-600 rounded-md shrink-0 hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+                      >
+                        {signupResult? 'Success✓' : 'verify'}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
             </div>
           </main>
         </div>
