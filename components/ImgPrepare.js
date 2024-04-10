@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const CompareImage = ({ value = 50, step = '.1', height = null, children }) => {
+const CompareImage = ({ value = 0, step = '.1', height = null, children }) => {
   const [width, setWidth] = useState(null);
   const [compareWidth, setCompareWidth] = useState(value);
   const containerRef = useRef(null);
@@ -38,7 +38,7 @@ const CompareImage = ({ value = 50, step = '.1', height = null, children }) => {
     <div className="com_container" ref={containerRef}>
       <div className="compare-wrapper">
         <div className="compare compare_bg">
-          <div className="compare__content" style={{ width: width, height: height ? `${height}px` : '100%' }}>
+          <div className="compare__content" style={{ width: width, height: height ? `${height}px` : 'auto' }}>
             <div>{children[0]}</div>
           </div>
           <div className="handle-wrap" style={{ left: `calc(${compareWidth + '%'} - var(--handle-line-width) / 2)` }}>

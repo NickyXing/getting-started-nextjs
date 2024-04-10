@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Header from "../components/Header";
+import ImgPrepare from "../components/ImgPrepare";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export default function Home() {
@@ -112,7 +113,7 @@ export default function Home() {
         </h1>
         <div>
           <div className="flex justify-center w-full item-center">
-            {!filePath && (
+            {!removeBgOutputs && !filePath && (
               <div
                 className="flex items-center justify-center w-1/2 px-6 py-10 mt-2 border border-dashed rounded-lg cursor-pointer h-96 border-gray-900/25"
                 onDragEnter={handleDragEnter}
@@ -167,29 +168,33 @@ export default function Home() {
             {removeBgOutputs && (
               <>
                 {removeBgOutputs.output && (
-                  <div className="mt-5 image-wrapper">
-                    <Image
-                      fill
-                      src={removeBgOutputs.output}
-                      alt="output"
-                      sizes="100vw"
-                    />
+                  <div className="w-1/2 mt-5">
+                    <ImgPrepare value={0} step="0.1">
+                      <div className="first-image">
+                        <img src={removeBgOutputs.output} alt="" width="100%" />
+                      </div>
+                      <div className="second-image">
+                        <img src={filePath} alt="" width="100%" />
+                      </div>
+                    </ImgPrepare>
                   </div>
                 )}
-                <p className="py-3 text-sm opacity-50">
+                {/* <p className="py-3 text-sm opacity-50">
                   status: {removeBgOutputs.status}
-                </p>
+                </p> */}
               </>
             )}
 
             {error && <div>{error}</div>}
           </div>
-          <button
-            className="inline-block px-6 py-3 text-sm font-medium text-white transition bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
-            onClick={removeBg}
-          >
-            Remove Background
-          </button>
+          <div className="w-full mt-5 text-center">
+            <button
+              className="inline-block px-6 py-3 text-sm font-medium text-white transition bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
+              onClick={removeBg}
+            >
+              Remove Background
+            </button>
+          </div>
         </div>
       </div>
     </div>
