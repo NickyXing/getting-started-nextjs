@@ -61,7 +61,7 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
       <div className="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-1 md:flex md:items-center md:gap-12">
-            <Link className="block text-blue-500" href="#">
+            <Link className="block text-blue-500" href="/">
               <span className="sr-only">Home</span>
               <svg
                 className="h-8"
@@ -75,9 +75,9 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
                 />
               </svg>
             </Link>
-            <span className="text-lg font-bold text-transparent bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text">
+            <Link href="/" className="text-lg font-bold text-transparent cursor-pointer bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text">
               Fancyimg
-            </span>
+            </Link>
           </div>
 
           <div className="md:flex md:items-center md:gap-12">
@@ -86,7 +86,7 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
                 <li>
                   <Link
                     className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#"
+                    href="blog"
                   >
                     {" "}
                     Blog{" "}
@@ -95,13 +95,13 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
                 <li>
                   <Link
                     className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#"
+                    href="/pricing"
                   >
                     {" "}
-                    Price{" "}
+                    Pricing{" "}
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     className="text-gray-500 transition hover:text-gray-500/75"
                     href="#"
@@ -109,7 +109,7 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
                     {" "}
                     About{" "}
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </nav>
 

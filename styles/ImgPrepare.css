@@ -71,7 +71,7 @@
     align-items: center;
     justify-content: center;
     color: white;
-    background: var(--handle-bg);
+    /* background: var(--handle-bg); */
     border-radius: 50%;
     width: var(--handle-width);
     height: var(--handle-height);

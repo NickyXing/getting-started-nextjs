@@ -4,7 +4,8 @@ export default function IndexPage() {
   return (
     <div>
       <Header></Header>
-      <div className="h-16 "></div>
+      <div className="h-24 "></div>
+      <h1 className="mt-4 text-4xl font-bold text-center">Choose Your Plan</h1>
       <div className="max-w-6xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:items-center md:gap-8">
           {/* free plan */}
