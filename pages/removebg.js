@@ -22,6 +22,9 @@ export default function Home() {
 
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    queryRemoveRecord()
+  }, [])
   const handleClick = () => {
     fileInputRef.current.click();
   };
@@ -93,9 +96,36 @@ export default function Home() {
         });
         return;
       }
+      
+      if(removeBgOutputs.output) {
+        // 插入图片记录
+        await fetch("/api/add-img-record/removebg", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: localStorage.getItem('token')
+          },
+          body: JSON.stringify({
+            imgUrl: removeBgOutputs.output
+          })
+        });
+        queryRemoveRecord()
+
+      }
       console.log({ removeBgOutputs });
       setRemoveBgOutputs(removeBgOutputs);
     }
+  };
+
+  const queryRemoveRecord = async () => {
+    const res = await fetch("/api/query-img-record/removebg", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem('token')
+      }
+    });
+    console.log(res);
   };
 
   //   upload image
