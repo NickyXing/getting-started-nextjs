@@ -40,7 +40,7 @@ export default async function handler(req, res) {
   //     used BOOLEAN DEFAULT FALSE
   //     )`;
 
-  // await sql`DROP TABLE check_mail;`
+  await sql`DROP TABLE remove_list;`
   const result = await sql`
   CREATE TABLE IF NOT EXISTS remove_list (
       id SERIAL PRIMARY KEY,

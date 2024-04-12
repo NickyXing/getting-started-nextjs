@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Header from "../components/Header";
 import ImgPrepare from "../components/ImgPrepare";
-import { message } from "antd/lib";
+import { message, Image as AntdImage } from "antd/lib";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -22,9 +22,12 @@ export default function Home() {
 
   const [loading, setLoading] = useState(false);
 
+  const [removeRecord, setRemoveRecord] = useState([]);
+  const [isRotating, setRotating] = useState(false);
+
   useEffect(() => {
-    queryRemoveRecord()
-  }, [])
+    queryRemoveRecord();
+  }, []);
   const handleClick = () => {
     fileInputRef.current.click();
   };
@@ -66,7 +69,7 @@ export default function Home() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem('token')
+        authorization: localStorage.getItem("token"),
       },
       body: JSON.stringify({
         input: {
@@ -91,26 +94,39 @@ export default function Home() {
       if (response.status !== 200) {
         setError(removeBgOutputs.detail);
         messageApi.open({
-          type: 'error',
+          type: "error",
           content: removeBgOutputs.error,
         });
         return;
       }
-      
-      if(removeBgOutputs.output) {
+
+      if (removeBgOutputs.output) {
+        // 转存到我的图片库
+        // 插入图片记录
+        let uploadRes = await fetch("/api/upload/upload-processed", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: localStorage.getItem("token"),
+          },
+          body: JSON.stringify({
+            url: removeBgOutputs.output,
+          }),
+        });
+        const uploadResult = await uploadRes.json();
+
         // 插入图片记录
         await fetch("/api/add-img-record/removebg", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            authorization: localStorage.getItem('token')
+            authorization: localStorage.getItem("token"),
           },
           body: JSON.stringify({
-            imgUrl: removeBgOutputs.output
-          })
+            imgUrl: uploadResult.data.url,
+          }),
         });
-        queryRemoveRecord()
-
+        await queryRemoveRecord();
       }
       console.log({ removeBgOutputs });
       setRemoveBgOutputs(removeBgOutputs);
@@ -122,10 +138,13 @@ export default function Home() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: localStorage.getItem('token')
-      }
+        authorization: localStorage.getItem("token"),
+      },
     });
-    console.log(res);
+
+    let result = await res.json();
+    console.log(result);
+    setRemoveRecord(result.result);
   };
 
   //   upload image
@@ -176,10 +195,10 @@ export default function Home() {
     }
   };
   const reset = () => {
-    setError(null)
-    setRemoveBgOutputs(null)
-    setFilePath(null)
-    setImgWidth(false)
+    setError(null);
+    setRemoveBgOutputs(null);
+    setFilePath(null);
+    setImgWidth(false);
   };
   return (
     <div>
@@ -442,6 +461,62 @@ export default function Home() {
                 </button>
               </>
             )}
+          </div>
+        </div>
+        {/* 相册 */}
+        <div className="flex flex-row items-center mx-auto overflow-x-auto max-w-7xl mt-14" style={{userSelect: "none", }}>
+          <div
+            style={{ height: "100px" }}r
+            className="flex items-center justify-center px-2 bg-gray-200 rounded-l-lg rounded-r-lg cursor-pointer"
+            onClick={() => {
+              if (isRotating) {
+                setRotating(false);
+              } else {
+                setRotating(true);
+              }
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 15 15"
+              className={`arrow-icon ${isRotating ? "rotating" : ""}`}
+            >
+              <path
+                fill="currentColor"
+                d="M8.293 2.293a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1 0 1.414l-4.5 4.5a1 1 0 0 1-1.414-1.414L11 8.5H1.5a1 1 0 0 1 0-2H11L8.293 3.707a1 1 0 0 1 0-1.414Z"
+              />
+            </svg>
+          </div>
+          <div id="scroll" onWheel={
+            (e) => {
+              e.preventDefault();
+
+              const delta = e.deltaY;
+              const container = document.querySelector('#scroll');
+              container.scrollLeft += delta;
+            }
+          } className={(isRotating? 'w-0' : 'w-full') +" transition-all overflow-x-auto overflow-y-hidden horizon grid grid-rows-1 grid-flow-col justify-start"}>
+            {removeRecord.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="ml-2 text-center border-2 border-gray-200 rounded-xl hover:bg-gray-200"
+                  style={{ width: "100px", height: "100px" }}
+                >
+                  <AntdImage
+                    src={item.img_url}
+                    alt=""
+                    fallback=""
+                    height={100}
+                    preview={{
+                      maskClassName: "full-opacity",
+                    }}
+                  ></AntdImage>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

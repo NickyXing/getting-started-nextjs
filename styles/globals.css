@@ -45,3 +45,18 @@ input {
   border-radius: 50%;
   cursor: pointer;
 }
+
+.full-opacity {
+  opacity: 0 !important;
+}
+
+.arrow-icon {
+  transition: transform 0.5s;
+}
+
+.rotating {
+  transform: rotate(-180deg);
+}
+.horizon::-webkit-scrollbar {
+  display: none;
+}
