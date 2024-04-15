@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const CompareImage = ({ value = 0, step = '.1', height = null, children }) => {
-  const [width, setWidth] = useState(null);
+const CompareImage = ({ value = 0, step = '.1', height = null, children, widthProp = null }) => {
+  const [width, setWidth] = useState(widthProp);
   const [compareWidth, setCompareWidth] = useState(value);
   const containerRef = useRef(null);
 
   useEffect(() => {
-    setWidth(getContainerWidth());
+    // setWidth(getContainerWidth());
     window.addEventListener('resize', handleResize);
     autoMove()
     return () => {
@@ -33,7 +33,7 @@ const CompareImage = ({ value = 0, step = '.1', height = null, children }) => {
   const handleResize = () => {
     const w = getContainerWidth();
     if (w === width) return;
-    setWidth(w);
+    // setWidth(w);
   };
 
   const getContainerWidth = () => {

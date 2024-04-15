@@ -34,6 +34,7 @@ const RemoveBg = observer(({ store, element, elements }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: localStorage.getItem("token"),
       },
       body: JSON.stringify({
         input: {
@@ -42,7 +43,7 @@ const RemoveBg = observer(({ store, element, elements }) => {
       }),
     });
     let removeBgOutputs = await response.json();
-    if (response.status !== 201) {
+    if (response.status !== 200) {
       setError(removeBgOutputs.detail);
       return;
     }
@@ -68,16 +69,7 @@ const RemoveBg = observer(({ store, element, elements }) => {
       }
     }
   };
-  return (
-    <div>
-      <a
-        onClick={() => removeBg(element)}
-        href="#"
-        class="inline-block rounded bg-indigo-600 px-3 py-1 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
-      >
-        Remove background
-      </a>
-    </div>
+  return (null
   );
 });
 

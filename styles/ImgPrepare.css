@@ -10,10 +10,10 @@
     --z-index-handle-line: 4;
     --z-index-range-input: 6;
 }
-.com_container{
+/* .com_container{
     max-width: 800px;
  
-}
+} */
 .compare-wrapper {
     position: relative;
 }

@@ -127,6 +127,17 @@ export default function Home() {
           }),
         });
         await queryRemoveRecord();
+        // 更新credits
+        const u = await fetch('/api/user/get-user-info', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: localStorage.getItem("token"),
+          },
+        })
+        const user = await u.json()
+        console.log(user);
+        localStorage.setItem('user', JSON.stringify(user.user))
       }
       console.log({ removeBgOutputs });
       setRemoveBgOutputs(removeBgOutputs);
@@ -170,7 +181,7 @@ export default function Home() {
       setError(result);
       messageApi.open({
         type: "error",
-        content: 'Please login',
+        content: 'Please log in',
       });
     }
   };
@@ -288,7 +299,7 @@ export default function Home() {
             {(!removeBgOutputs ||
               (removeBgOutputs && !removeBgOutputs.output)) &&
               filePath && (
-                <div className="w-1/2 text-center">
+                <div className="text-center">
                   {/* <Image fill src={filePath} alt="output" /> */}
                   <img
                     ref={imgRef}
@@ -313,7 +324,7 @@ export default function Home() {
                     className="mt-5"
                     style={{ width: imgWidth, height: "28rem" }}
                   >
-                    <ImgPrepare value={prepareNum} step="0.1" height="28rem">
+                    <ImgPrepare value={prepareNum} step="0.1" height="28rem" widthProp={imgWidth}>
                       <div className="first-image">
                         <img
                           src={removeBgOutputs.output}
@@ -516,6 +527,7 @@ export default function Home() {
                   style={{ width: "100px", height: "100px" }}
                 >
                   <AntdImage
+                    className="object-scale-down "
                     src={item.img_url}
                     alt=""
                     fallback=""
