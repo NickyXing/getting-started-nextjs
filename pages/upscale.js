@@ -82,6 +82,11 @@ export default function Home() {
     let removeBgOutputs = await response.json();
     if (response.status !== 200) {
       setError(removeBgOutputs.detail);
+      messageApi.open({
+        type: "error",
+        content: removeBgOutputs.error,
+      });
+      setLoading(false)
       return;
     }
 

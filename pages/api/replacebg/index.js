@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     // 验证用户点数
     const users = await sql`SELECT * FROM fancy_user WHERE id = ${decoded.userId}`;
     console.log(users);
-    if(users.rows[0] && users.rows[0].credits > 1) {
+    if(users.rows[0] && users.rows[0].credits >= 5) {
       const prediction = await replicate.predictions.create({
         // Pinned to a specific version of remove bg
         // See https://replicate.com/cjwbw/rembg
@@ -43,7 +43,7 @@ export default async function handler(req, res) {
   
       res.statusCode = 200;
       // 扣除一点点数
-      const updateRes = await sql`UPDATE fancy_user SET credits = credits - 1 WHERE id = ${decoded.userId}`;
+      const updateRes = await sql`UPDATE fancy_user SET credits = credits - 5 WHERE id = ${decoded.userId}`;
       console.log(updateRes);
       res.end(JSON.stringify(prediction));
     } else {

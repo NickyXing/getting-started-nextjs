@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     const users =
       await sql`SELECT * FROM fancy_user WHERE id = ${decoded.userId}`;
     console.log(users);
-    if (users.rows[0] && users.rows[0].credits > 1) {
+    if (users.rows[0] && users.rows[0].credits >= 10) {
       const prediction = await replicate.predictions.create({
         // Pinned to a specific version of Stable Diffusion
         // See https://replicate.com/stability-ai/sdxl
@@ -68,7 +68,7 @@ export default async function handler(req, res) {
       res.statusCode = 200;
       // 扣除一点点数
       const updateRes =
-        await sql`UPDATE fancy_user SET credits = credits - 1 WHERE id = ${decoded.userId}`;
+        await sql`UPDATE fancy_user SET credits = credits - 10 WHERE id = ${decoded.userId}`;
       console.log(updateRes);
       res.end(JSON.stringify(prediction));
     } else {

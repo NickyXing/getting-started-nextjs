@@ -6,6 +6,13 @@ export default function Home() {
   useEffect(() => {});
   const handleSubmit = async (e) => {};
 
+  const learnMore = () => {
+    const section2 = document.getElementById("removebg");
+    section2.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div>
       <Header></Header>
@@ -28,26 +35,26 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <Link
-                className="block w-full px-12 py-3 text-sm font-medium text-white border rounded bg-gradient-to-r from-blue-500 to-purple-600 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-                href="#"
-              >
+              <button className="block w-full px-12 py-3 text-sm font-medium text-white border rounded bg-gradient-to-r from-blue-500 to-purple-600 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto">
                 Get Started
-              </Link>
+              </button>
 
-              <Link
-                className="block w-full px-12 py-3 text-sm font-medium text-purple-600 border border-purple-600 rounded focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-                href="#"
+              <button
+                className="block w-full px-12 py-3 text-sm font-medium text-purple-600 border border-purple-600 rounded focus:outline-none focus:ring sm:w-auto"
+                onClick={learnMore}
               >
                 Learn More
-              </Link>
+              </button>
             </div>
           </div>
         </div>
       </section>
       <div className="container">
         {/*remove bg 产品介绍 */}
-        <section className="pt-5 pb-5 overflow-hidden bg-transparent justify-items-center sm:grid sm:grid-cols-2">
+        <section
+          id="removebg"
+          className="items-center pt-5 pb-5 overflow-hidden bg-transparent justify-items-center sm:grid sm:grid-cols-2"
+        >
           <div className="p-8 md:p-12 lg:px-16 lg:py-24">
             <div className="max-w-xl mx-auto text-center ltr:sm:text-center">
               <h2 className="text-2xl font-bold text-gray-900 md:text-3xl">
@@ -75,16 +82,16 @@ export default function Home() {
 
           <img
             alt=""
-            src="https://replicate.delivery/pbxt/Ho28olmw8dnOffOz7yjuPK6UGsOPqFUfpCnq1ur8zaAKxiPH/animal-1.jpeg"
-            className="max-w-lg rounded"
+            src="https://upload.anytools.me/1713234524645%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240416102833.png"
+            className="max-w-lg rounded shadow-lg"
           />
         </section>
         {/*upscale 产品介绍 */}
-        <section className="pt-5 pb-5 overflow-hidden bg-transparent justify-items-center sm:grid sm:grid-cols-2">
+        <section className="items-center pt-5 pb-5 overflow-hidden bg-transparent justify-items-center sm:grid sm:grid-cols-2">
           <img
             alt=""
-            src="https://replicate.delivery/pbxt/Ho28olmw8dnOffOz7yjuPK6UGsOPqFUfpCnq1ur8zaAKxiPH/animal-1.jpeg"
-            className="max-w-lg rounded"
+            src="https://upload.anytools.me/1713236734737%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240416110521.png"
+            className="max-w-lg rounded shadow-lg"
           />
           <div className="p-8 md:p-12 lg:px-16 lg:py-24">
             <div className="max-w-xl mx-auto text-center ltr:sm:text-center">
@@ -112,7 +119,7 @@ export default function Home() {
           </div>
         </section>
         {/* img edit 产品介绍 */}
-        <section className="pt-5 pb-5 overflow-hidden bg-transparent justify-items-center sm:grid sm:grid-cols-2">
+        <section className="items-center pt-5 pb-5 overflow-hidden bg-transparent justify-items-center sm:grid sm:grid-cols-2">
           <div className="p-8 md:p-12 lg:px-16 lg:py-24">
             <div className="max-w-xl mx-auto text-center ltr:sm:text-center">
               <h2 className="text-2xl font-bold text-gray-900 md:text-3xl">
@@ -139,8 +146,8 @@ export default function Home() {
           </div>
           <img
             alt=""
-            src="https://replicate.delivery/pbxt/Ho28olmw8dnOffOz7yjuPK6UGsOPqFUfpCnq1ur8zaAKxiPH/animal-1.jpeg"
-            className="max-w-lg rounded"
+            src="https://upload.anytools.me/1713237071060Fancyimg%20-%20Your%20Images,%20Perfected%20by%20Fancyimg%20AI.png"
+            className="max-w-lg rounded shadow-lg"
           />
         </section>
         {/* 其他产品 */}
@@ -321,7 +328,7 @@ export default function Home() {
           </div>
         </section>
         {/* 推荐人评分 */}
-        <section className="bg-transparent">
+        {/* <section className="bg-transparent">
           <div className="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8 lg:py-16">
             <h2 className="text-4xl font-bold tracking-tight text-center text-gray-900 sm:text-5xl">
               Read trusted reviews from our customers
@@ -951,19 +958,24 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
       </div>
       {/* 页脚 */}
       <footer class="bg-gray-100">
         <div class="relative mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 lg:pt-24">
-          <div class="absolute end-4 top-4 sm:end-6 sm:top-6 lg:end-8 lg:top-8">
-          </div>
+          <div class="absolute end-4 top-4 sm:end-6 sm:top-6 lg:end-8 lg:top-8"></div>
 
           <div class="lg:flex lg:items-end lg:justify-between">
             <div>
               <div class="flex justify-center items-center text-teal-600 lg:justify-start">
-                <img className="w-12 h-12 " src="https://upload.anytools.me/1713169968913logo.png" alt="" />
-                <span className="ml-2 text-lg font-bold text-transparent bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text">Fancyimg</span>
+                <img
+                  className="w-12 h-12 "
+                  src="https://upload.anytools.me/1713169968913logo.png"
+                  alt=""
+                />
+                <span className="ml-2 text-lg font-bold text-transparent bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text">
+                  Fancyimg
+                </span>
               </div>
               <p class="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500 lg:text-left">
                 Make your images Fancy!
@@ -971,16 +983,7 @@ export default function Home() {
             </div>
 
             <ul class="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:mt-0 lg:justify-end lg:gap-12">
-
-              <li>
-                <Link
-                  class="text-gray-700 transition hover:text-gray-700/75"
-                  href="/pricing"
-                >
-                  {" "}
-                  Pricing{" "}
-                </Link>
-              </li>
+              
               <li>
                 <Link
                   class="text-gray-700 transition hover:text-gray-700/75"
@@ -1006,6 +1009,15 @@ export default function Home() {
                 >
                   {" "}
                   Edit Image{" "}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  class="text-gray-700 transition hover:text-gray-700/75"
+                  href="/pricing"
+                >
+                  {" "}
+                  Pricing{" "}
                 </Link>
               </li>
             </ul>
