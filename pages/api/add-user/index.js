@@ -28,7 +28,7 @@ export default async function handler(req, res) {
     }
 
     await sql`INSERT INTO fancy_user (email, password, nickname, credits, avatar)
-    VALUES (${email}, ${hashPassword(password)},${nickname},${50}, ${avatar});`;
+    VALUES (${email}, ${hashPassword(password)},${nickname},${30}, ${avatar});`;
     res.statusCode = 201;
     return res.end(JSON.stringify({status: "success"}));
   } catch (error) {

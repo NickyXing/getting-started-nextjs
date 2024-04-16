@@ -163,7 +163,7 @@ export default function IndexPage() {
                       />
                     </div>
 
-                    <div className="col-span-6 sm:col-span-3">
+                    <div className="col-span-6 sm:col-span-6">
                       <label
                         for="Password"
                         className="block text-sm font-medium text-gray-700"
@@ -180,7 +180,7 @@ export default function IndexPage() {
                       />
                     </div>
 
-                    <div className="col-span-6 sm:col-span-3">
+                    {/* <div className="col-span-6 sm:col-span-3">
                       <label
                         for="PasswordConfirmation"
                         className="block text-sm font-medium text-gray-700"
@@ -194,7 +194,7 @@ export default function IndexPage() {
                         name="password_confirmation"
                         className="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
                       />
-                    </div>
+                    </div> */}
 
                     <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                       <button

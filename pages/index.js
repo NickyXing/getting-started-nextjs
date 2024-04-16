@@ -13,6 +13,14 @@ export default function Home() {
     });
   };
 
+  const getStart =  () => {
+    if (localStorage.getItem("token")) {
+      learnMore()
+    } else {
+      window.location.href = "/login";
+    }
+  };
+
   return (
     <div>
       <Header></Header>
@@ -35,7 +43,7 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <button className="block w-full px-12 py-3 text-sm font-medium text-white border rounded bg-gradient-to-r from-blue-500 to-purple-600 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto">
+              <button onClick={getStart} className="block w-full px-12 py-3 text-sm font-medium text-white border rounded bg-gradient-to-r from-blue-500 to-purple-600 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto">
                 Get Started
               </button>
 
