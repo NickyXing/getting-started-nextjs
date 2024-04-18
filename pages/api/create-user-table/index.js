@@ -40,14 +40,14 @@ export default async function handler(req, res) {
   //     used BOOLEAN DEFAULT FALSE
   //     )`;
 
-  // await sql`DROP TABLE upscale_list;`
-  const result = await sql`
-  CREATE TABLE IF NOT EXISTS upscale_list (
-      id SERIAL PRIMARY KEY,
-      email VARCHAR(255) NOT NULL,
-      img_url VARCHAR(255),
-      created_at TIMESTAMP DEFAULT NOW()
-      )`;
+  // await sql`DROP TABLE faceart_list;`
+  // const result = await sql`
+  // CREATE TABLE IF NOT EXISTS faceart_list (
+  //     id SERIAL PRIMARY KEY,
+  //     email VARCHAR(255) NOT NULL,
+  //     img_url VARCHAR(255),
+  //     created_at TIMESTAMP DEFAULT NOW()
+  //     )`;
     res.statusCode = 201;
     return res.end(JSON.stringify(result));
   } catch (error) {

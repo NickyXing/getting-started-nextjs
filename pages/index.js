@@ -13,9 +13,9 @@ export default function Home() {
     });
   };
 
-  const getStart =  () => {
+  const getStart = () => {
     if (localStorage.getItem("token")) {
-      learnMore()
+      learnMore();
     } else {
       window.location.href = "/login";
     }
@@ -43,7 +43,10 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <button onClick={getStart} className="block w-full px-12 py-3 text-sm font-medium text-white border rounded bg-gradient-to-r from-blue-500 to-purple-600 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto">
+              <button
+                onClick={getStart}
+                className="block w-full px-12 py-3 text-sm font-medium text-white border rounded bg-gradient-to-r from-blue-500 to-purple-600 focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+              >
                 Get Started
               </button>
 
@@ -125,6 +128,45 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </section>
+        {/*faceart 产品介绍 */}
+        <section
+          id="faceart"
+          className="items-center pt-5 pb-5 overflow-hidden bg-transparent justify-items-center sm:grid sm:grid-cols-2"
+        >
+          <div className="p-8 md:p-12 lg:px-16 lg:py-24">
+            <div className="max-w-xl mx-auto text-center ltr:sm:text-center">
+              <h2 className="text-2xl font-bold text-gray-900 md:text-3xl">
+                Face Art Transfer
+              </h2>
+
+              <p className="hidden text-gray-500 md:mt-4 md:block">
+                Transform any face into captivating visual styles with our
+                AI-powered feature. Turn faces into stunning 3D models,
+                whimsical emojis, retro pixel art, classic video game
+                characters, delightful claymation figures, or charming toy
+                designs. Our advanced technology reshapes faces into diverse
+                artistic expressions, breathing new life into your favorite
+                portraits. Explore the magic of facial metamorphosis and unleash
+                your creativity with just a few clicks.
+              </p>
+
+              <div className="mt-4 md:mt-8">
+                <Link
+                  href="/faceart"
+                  className="inline-block px-12 py-3 text-sm font-medium text-white transition bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
+                >
+                  Try Face Art Transfer
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <img
+            alt=""
+            src="https://upload.anytools.me/1713234524645%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240416102833.png"
+            className="max-w-lg rounded shadow-lg"
+          />
         </section>
         {/* img edit 产品介绍 */}
         <section className="items-center pt-5 pb-5 overflow-hidden bg-transparent justify-items-center sm:grid sm:grid-cols-2">
@@ -991,7 +1033,6 @@ export default function Home() {
             </div>
 
             <ul class="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:mt-0 lg:justify-end lg:gap-12">
-              
               <li>
                 <Link
                   class="text-gray-700 transition hover:text-gray-700/75"
