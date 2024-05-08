@@ -111,6 +111,24 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
                     Pricing{" "}
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    className="text-gray-500 transition hover:text-gray-500/75"
+                    href="/policy"
+                  >
+                    {" "}
+                    Privacy Policy {" "}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-gray-500 transition hover:text-gray-500/75"
+                    href="/term"
+                  >
+                    {" "}
+                    Terms of use{" "}
+                  </Link>
+                </li>
               </ul>
             </nav>
 

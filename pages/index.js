@@ -164,7 +164,7 @@ export default function Home() {
 
           <img
             alt=""
-            src="https://upload.anytools.me/1713234524645%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240416102833.png"
+            src="https://upload.anytools.me/1715138898991050811274500_0微信截图_20240508112610.png"
             className="max-w-lg rounded shadow-lg"
           />
         </section>
@@ -1069,6 +1069,24 @@ export default function Home() {
                   Pricing{" "}
                 </Link>
               </li>
+              <li>
+                  <Link
+                    className="text-gray-700 transition hover:text-gray-500/75"
+                    href="/policy"
+                  >
+                    {" "}
+                    Privacy Policy {" "}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="text-gray-700 transition hover:text-gray-500/75"
+                    href="/term"
+                  >
+                    {" "}
+                    Terms of use{" "}
+                  </Link>
+                </li>
             </ul>
           </div>
 
