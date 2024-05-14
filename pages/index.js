@@ -39,6 +39,7 @@ export default function Home() {
       <Header></Header>
       {/* 首屏 */}
       <section className="text-gray-700 bg-gradient-to-br from-cyan-100 via-white to-purple-100">
+        
         <div className="max-w-screen-xl px-4 py-32 pt-16 mx-auto lg:flex lg:h-screen lg:items-center">
           <div className="mx-auto text-center max-w-7xl">
             <h1 className="font-extrabold text-black text-7xl sm:text-5xl">
@@ -1065,14 +1066,14 @@ export default function Home() {
                 </Link>
               </li>
               <li>
-                  <Link
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="/faceart"
-                  >
-                    {" "}
-                    Face Art Transfer{" "}
-                  </Link>
-                </li>
+                <Link
+                  className="text-gray-500 transition hover:text-gray-500/75"
+                  href="/faceart"
+                >
+                  {" "}
+                  Face Art Transfer{" "}
+                </Link>
+              </li>
               <li>
                 <Link
                   class="text-gray-700 transition hover:text-gray-700/75"

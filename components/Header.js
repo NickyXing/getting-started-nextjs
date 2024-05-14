@@ -190,6 +190,7 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
                       </Space>
                     </Dropdown>
                   </div>
+                  <div className="credits">Credits: {user.credits}</div>
                 </div>
               )}
 
