@@ -25,7 +25,7 @@ export default function Home() {
   const [removeRecord, setRemoveRecord] = useState([]);
   const [isRotating, setRotating] = useState(false);
 
-  const [resolution, setResolution] = useState(2)
+  const [resolution, setResolution] = useState(2);
 
   useEffect(() => {
     queryRemoveRecord();
@@ -86,7 +86,7 @@ export default function Home() {
         type: "error",
         content: removeBgOutputs.error,
       });
-      setLoading(false)
+      setLoading(false);
       return;
     }
 
@@ -220,16 +220,26 @@ export default function Home() {
 
   const handleRChange = (value) => {
     console.log(value);
-    setResolution(value)
-  }
+    setResolution(value);
+  };
   return (
     <div>
       {contextHolder}
+      <Head>
+        <title>
+          Fancyimg - upscale low-quality images into high-resolution masterpieces.
+        </title>
+        <meta
+          name="keywords"
+          content="upscale image, upscale img, enhance image quality, 4x resolution"
+        />
+        <meta
+          name="description"
+          content="Restore and Elevate Your Visuals with AI Image Upscaling Effortlessly transform low-quality images into high-resolution masterpieces with our advanced AI-powered upscaling technology.4x resolution"
+        />
+      </Head>
       <Header></Header>
       <div className="container p-5 mx-auto">
-        <Head>
-          <title>Upscale Image</title>
-        </Head>
         <div className="h-16"></div>
         <h1 className="py-6 text-4xl font-bold text-center">Upscale Image</h1>
         {/* <h2 className="py-2 text-2xl font-bold text-center text-gray-400">Upscale Image 2 to 4 times</h2> */}
@@ -390,8 +400,8 @@ export default function Home() {
                   className="mr-4"
                   onChange={handleRChange}
                   options={[
-                    { value: 2, label: '2×' },
-                    { value: 4, label: '4×' }
+                    { value: 2, label: "2×" },
+                    { value: 4, label: "4×" },
                   ]}
                 />
                 <button

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Link from "next/link";
+import Head from "next/head";
+
 export default function Home() {
   const [error, setError] = useState(null);
   useEffect(() => {});
@@ -23,6 +25,17 @@ export default function Home() {
 
   return (
     <div>
+      <Head>
+        <title>Fancyimg - Your Images Perfected by Fancyimg AI</title>
+        <meta
+          name="keywords"
+          content="fancyimg, ai image upscaler, ai image enhancer, ai image editor"
+        />
+        <meta
+          name="description"
+          content="Elevate your visuals with Fancyimg's advanced AI tools. Remove backgrounds, upscale resolution, and transform faces - all with a few clicks. No specialized skills required. Unleash your creativity and make your images shine."
+        />
+      </Head>
       <Header></Header>
       {/* 首屏 */}
       <section className="text-gray-700 bg-gradient-to-br from-cyan-100 via-white to-purple-100">
@@ -164,7 +177,7 @@ export default function Home() {
 
           <img
             alt=""
-            src="https://upload.anytools.me/1715138898991050811274500_0微信截图_20240508112610.png"
+            src="https://upload.anytools.me/1715673948240polotno%20(7).png"
             className="max-w-lg rounded shadow-lg"
           />
         </section>
@@ -1052,6 +1065,15 @@ export default function Home() {
                 </Link>
               </li>
               <li>
+                  <Link
+                    className="text-gray-500 transition hover:text-gray-500/75"
+                    href="/faceart"
+                  >
+                    {" "}
+                    Face Art Transfer{" "}
+                  </Link>
+                </li>
+              <li>
                 <Link
                   class="text-gray-700 transition hover:text-gray-700/75"
                   href="/imgedit"
@@ -1070,23 +1092,23 @@ export default function Home() {
                 </Link>
               </li>
               <li>
-                  <Link
-                    className="text-gray-700 transition hover:text-gray-500/75"
-                    href="/policy"
-                  >
-                    {" "}
-                    Privacy Policy {" "}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-gray-700 transition hover:text-gray-500/75"
-                    href="/term"
-                  >
-                    {" "}
-                    Terms of use{" "}
-                  </Link>
-                </li>
+                <Link
+                  className="text-gray-700 transition hover:text-gray-500/75"
+                  href="/policy"
+                >
+                  {" "}
+                  Privacy Policy{" "}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-gray-700 transition hover:text-gray-500/75"
+                  href="/term"
+                >
+                  {" "}
+                  Terms of use{" "}
+                </Link>
+              </li>
             </ul>
           </div>
 

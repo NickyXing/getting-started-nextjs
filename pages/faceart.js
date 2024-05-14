@@ -234,12 +234,22 @@ export default function Home() {
     <div>
       {contextHolder}
       <Header></Header>
+      <Head>
+        <title>
+          Fancyimg - Transform any face into captivating visual styles
+        </title>
+        <meta
+          name="keywords"
+          content="face to art, face style transform, Portrait Style, emoji face, pixels face, clay face"
+        />
+        <meta
+          name="description"
+          content="Turn a face into 3D, emoji, pixel art, video game, claymation or toy"
+        />
+      </Head>
       <div className="container p-5 mx-auto">
-        <Head>
-          <title>Face to Art</title>
-        </Head>
         <div className="h-16"></div>
-        <h1 className="py-6 text-4xl font-bold text-center">Face to Art</h1>
+        <h1 className="py-6 text-4xl font-bold text-center">Face Art Transfer</h1>
         <h2 className="pb-6 text-xl text-center text-gray-500">Turn a face into 3D, emoji, pixel art, video game, claymation or toy</h2>
         {/* <h2 className="py-2 text-2xl font-bold text-center text-gray-400">faceart Image 2 to 4 times</h2> */}
         <div>
