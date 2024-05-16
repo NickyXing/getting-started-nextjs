@@ -27,6 +27,21 @@ export default async function handler(req, res) {
   //     mailcode VARCHAR(6)
   //   )
   // `;
+  // await sql`DROP TABLE fancy_order;`
+  // const result = await sql`
+  //   CREATE TABLE IF NOT EXISTS fancy_order (
+  //     id SERIAL PRIMARY KEY,
+  //     email VARCHAR(255) NOT NULL,
+  //     user_id VARCHAR(50) NOT NULL,
+  //     order_no VARCHAR(255) NOT NULL,
+  //     price VARCHAR(255) NOT NULL,
+  //     paypal_id VARCHAR(255) NOT NULL,
+  //     paypal_intent VARCHAR(255) NOT NULL,
+  //     paypal_status VARCHAR(50) NOT NULL,
+  //     created_at TIMESTAMP DEFAULT NOW(),
+  //     updated_at TIMESTAMP DEFAULT NOW()
+  //   )
+  // `;
 
   // 重置邮件code表
   // await sql`DROP TABLE check_mail;`

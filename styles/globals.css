@@ -65,3 +65,6 @@ input {
   color: #888;
   line-height: 41px;
 }
+.min-height {
+  min-height: 478px;
+}

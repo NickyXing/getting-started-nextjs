@@ -59,7 +59,7 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
     }
   }
   return (
-    <header className="fixed z-30 w-full transition-all shadow-md bg-white/50 backdrop-blur-xl">
+    <header className="fixed z-30 w-full transition-all shadow-md bg-white/50 backdrop-blur-xl min-w-max">
       <div className="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-1 md:flex md:items-center md:gap-3">
@@ -120,7 +120,7 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
                     Pricing{" "}
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     className="text-gray-500 transition hover:text-gray-500/75"
                     href="/policy"
@@ -137,7 +137,7 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
                     {" "}
                     Terms of use{" "}
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </nav>
 
