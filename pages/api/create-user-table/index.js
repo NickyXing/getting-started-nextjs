@@ -63,6 +63,7 @@ export default async function handler(req, res) {
   //     img_url VARCHAR(255),
   //     created_at TIMESTAMP DEFAULT NOW()
   //     )`;
+  
     res.statusCode = 201;
     return res.end(JSON.stringify(result));
   } catch (error) {
