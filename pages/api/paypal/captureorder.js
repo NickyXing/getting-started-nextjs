@@ -1,4 +1,4 @@
-import client from "../../utils/paypal";
+import client from "../../../paypal";
 import paypal from "@paypal/checkout-server-sdk";
 import jwt from "jsonwebtoken";
 import { sql } from "@vercel/postgres";
