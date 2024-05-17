@@ -4,6 +4,10 @@ const nextConfig = {
   transpilePackages: ['antd', '@ant-design/icons'],
   webpack: (config) => {
     config.externals = [...config.externals, { canvas: 'canvas' }]; // required to make Konva & react-konva work
+    config.resolve.fallback = {
+      fs: false,
+      path: false
+    }
     return config;
   },
   images: {
