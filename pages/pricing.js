@@ -1,13 +1,18 @@
 import Header from "../components/Header";
+import { useState, useEffect } from "react";
+import { message } from "antd/lib";
+import eventBus from '../utils/eventBus';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axios from "axios";
 export default function IndexPage() {
+  const [messageApi, contextHolder] = message.useMessage();
   const paypalCreateOrder = async (price) => {
+    console.log(price);
     try {
       let response = await axios.post(
         "/api/paypal/createorder",
         {
-          order_price: price,
+          order_price: price + '',
         },
         {
           headers: {
@@ -23,12 +28,13 @@ export default function IndexPage() {
       return null;
     }
   };
-  const paypalCaptureOrder = async (orderID) => {
+  const paypalCaptureOrder = async (orderID, price) => {
     try {
       let response = await axios.post(
         "/api/paypal/captureorder",
         {
           orderID,
+          currentPrice: price
         },
         {
           headers: {
@@ -37,10 +43,26 @@ export default function IndexPage() {
         }
       );
       if (response.data.success) {
+        // setCurrentPrice(null)
         console.log("pay success");
         // Order is successful
         // Your custom code
-
+        messageApi.open({
+          type: "success",
+          content: `Purchase successful! Your account has been credited with ${response.data.data.credits} credits.`,
+        });
+        // 更新credits
+        const u = await fetch("/api/user/get-user-info", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: localStorage.getItem("token"),
+          },
+        });
+        const user = await u.json();
+        console.log(user);
+        localStorage.setItem("user", JSON.stringify(user.user));
+        eventBus.emit('updateUser', { data: user.user });
         // Like showing a success toast:
         // toast.success('Amount Added to Wallet')
 
@@ -56,6 +78,7 @@ export default function IndexPage() {
   };
   return (
     <div>
+      {contextHolder}
       <Header></Header>
       <div className="h-24 "></div>
       <h1 className="mt-4 text-4xl font-bold text-center">Choose Your Plan</h1>
@@ -170,11 +193,13 @@ export default function IndexPage() {
             </a> */}
           </div>
           {/* pro plan */}
-          <div className="p-6 border border-indigo-600 shadow-sm rounded-2xl ring-1 ring-indigo-600 sm:px-8 lg:p-12 min-height">
+          <div className="relative p-6 border border-indigo-600 shadow-sm rounded-2xl ring-1 ring-indigo-600 sm:px-8 lg:p-12 min-height">
+            <img className="absolute w-12 h-12 crown" src="https://upload.anytools.me/1716277818847crown.png" alt="" srcset="" />
             <div className="text-center">
-              <h2 className="text-lg font-medium text-gray-900">
-                Pro
+              <h2 className="text-lg font-bold text-gray-900">
+                Most Popular
                 <span className="sr-only">Plan</span>
+                <div></div>
               </h2>
 
               <p className="mt-2 sm:mt-4">
@@ -304,6 +329,27 @@ export default function IndexPage() {
 
                 <span className="text-xs text-gray-700 ">
                   {" "}
+                  $0.15 / per face art transfer{" "}
+                </span>
+              </li>
+              <li className="flex items-center gap-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-5 text-indigo-700"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 12.75l6 6 9-13.5"
+                  />
+                </svg>
+
+                <span className="text-xs text-gray-700 ">
+                  {" "}
                   $0.15 / per image Upscale{" "}
                 </span>
               </li>
@@ -330,7 +376,7 @@ export default function IndexPage() {
                   return order_id + "";
                 }}
                 onApprove={async (data, actions) => {
-                  let response = await paypalCaptureOrder(data.orderID);
+                  let response = await paypalCaptureOrder(data.orderID, '29.9');
                   if (response) return true;
                 }}
               />
@@ -470,6 +516,27 @@ export default function IndexPage() {
 
                 <span className="text-xs text-gray-700 ">
                   {" "}
+                  $0.198 / per face art transfer{" "}
+                </span>
+              </li>
+              <li className="flex items-center gap-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-5 text-indigo-700"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 12.75l6 6 9-13.5"
+                  />
+                </svg>
+
+                <span className="text-xs text-gray-700 ">
+                  {" "}
                   $0.198 / per image Upscale{" "}
                 </span>
               </li>
@@ -502,13 +569,18 @@ export default function IndexPage() {
                   return order_id + "";
                 }}
                 onApprove={async (data, actions) => {
-                  let response = await paypalCaptureOrder(data.orderID);
+                  let response = await paypalCaptureOrder(data.orderID, '9.9');
                   if (response) return true;
                 }}
               />
             </PayPalScriptProvider>
           </div>
         </div>
+      </div>
+      <div className="max-w-6xl px-4 py-1 mx-auto text-xs text-gray-500 sm:px-6 sm:py-1 lg:px-8">
+        <div>* 5 credits per image remove background</div>
+        <div>* 10 credits per face art transfer</div>
+        <div>* 10 credits per image upscale</div>
       </div>
     </div>
   );

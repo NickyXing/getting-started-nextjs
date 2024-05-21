@@ -4,6 +4,7 @@ import Image from "next/image";
 import Header from "../components/Header";
 import ImgPrepare from "../components/ImgPrepare";
 import { message, Image as AntdImage, Select } from "antd/lib";
+import eventBus from '../utils/eventBus';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -135,6 +136,18 @@ export default function Home() {
           }),
         });
         await queryRemoveRecord();
+        // 更新credits
+        const u = await fetch("/api/user/get-user-info", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: localStorage.getItem("token"),
+          },
+        });
+        const user = await u.json();
+        console.log(user);
+        localStorage.setItem("user", JSON.stringify(user.user));
+        eventBus.emit('updateUser', { data: user.user });
       } else if (removeBgOutputs.status === "succeeded" && !removeBgOutputs.output) {
         messageApi.open({
           type: "error",

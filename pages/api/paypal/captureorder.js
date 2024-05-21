@@ -25,7 +25,12 @@ export default async function Handler(req, res) {
   request.requestBody({});
   const response = await PaypalClient.execute(request);
 
-  let credits = 500
+  let credits = 0
+  if(req.body.currentPrice === '9.9') {
+    credits = 500
+  } else if(req.body.currentPrice === '29.9') {
+    credits = 2000
+  }
   if (!response) {
     return res
       .status(500)

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Dropdown, Space } from "antd/lib";
-
+import eventBus from '../utils/eventBus';
 const Header = ({ value = 50, step = ".1", height = null, children }) => {
   const [user, setUser] = useState(false);
   const [token, setToken] = useState(false);
@@ -38,6 +38,9 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
     }
   };
   useEffect(() => {
+    eventBus.on('updateUser', (user) => {
+      setUser(user.data)
+    });
     getUser()
     
   }, []);

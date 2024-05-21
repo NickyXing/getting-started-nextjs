@@ -4,6 +4,7 @@ import Image from "next/image";
 import Header from "../components/Header";
 import ImgPrepare from "../components/ImgPrepare";
 import { message, Image as AntdImage } from "antd/lib";
+import eventBus from '../utils/eventBus';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -143,6 +144,7 @@ export default function Home() {
         const user = await u.json();
         console.log(user);
         localStorage.setItem("user", JSON.stringify(user.user));
+        eventBus.emit('updateUser', { data: user.user });
       }
       console.log({ removeBgOutputs });
       setRemoveBgOutputs(removeBgOutputs);

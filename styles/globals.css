@@ -68,3 +68,10 @@ input {
 .min-height {
   min-height: 478px;
 }
+.crown {
+  top: -28px;
+  right: -28px;
+  transform: rotate(35deg);
+  z-index: 6;
+  user-select: none;
+}
