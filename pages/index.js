@@ -2,10 +2,27 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Link from "next/link";
 import Head from "next/head";
+import eventBus from '../utils/eventBus';
 
 export default function Home() {
   const [error, setError] = useState(null);
-  useEffect(() => {});
+  const getUser = async () => {
+    if (localStorage.getItem("user")) {
+      // 更新credits
+      const u = await fetch("/api/user/get-user-info", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: localStorage.getItem("token"),
+        },
+      });
+      const user = await u.json();
+      console.log(user);
+      localStorage.setItem("user", JSON.stringify(user.user));
+      eventBus.emit("updateUser", { data: user.user });
+    }
+  }
+  getUser()
   const handleSubmit = async (e) => {};
 
   const learnMore = () => {
@@ -39,7 +56,6 @@ export default function Home() {
       <Header></Header>
       {/* 首屏 */}
       <section className="text-gray-700 bg-gradient-to-br from-cyan-100 via-white to-purple-100">
-        
         <div className="max-w-screen-xl px-4 py-32 pt-16 mx-auto lg:flex lg:h-screen lg:items-center">
           <div className="mx-auto text-center max-w-7xl">
             <h1 className="font-extrabold text-black text-7xl sm:text-5xl">
