@@ -40,13 +40,13 @@ export default function IndexPage() {
         }
 
         .default-styles div {
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+            "Segoe UI Symbol";
         }
       `}</style>
       <div className="px-64 py-20 default-styles">
-        <h1>
-          Terms and Conditions
-        </h1>
+        <h1>Terms and Conditions</h1>
         <p>Welcome to FancyImg!</p>
         <p>
           These terms and conditions outline the rules and regulations for the
@@ -313,6 +313,61 @@ export default function IndexPage() {
           As long as the website and the information and services on the website
           are provided free of charge, we will not be liable for any loss or
           damage of any nature.
+        </p>
+        <h3>
+          <strong>Refund Policy</strong>
+        </h3>{" "}
+        <p>
+          At FancyImg.com, we strive to provide high-quality services that meet
+          your needs. However, if you are unsatisfied with our services for any
+          reason, you may be eligible for a refund. Please review our refund
+          policy below.
+        </p>{" "}
+        <h3>
+          <strong>Refund Eligibility</strong>
+        </h3>{" "}
+        <p>
+          - If you have subscribed to a plan but the features are not
+          functioning properly, you will be eligible for a refund after
+          reporting the issue to us.
+        </p>{" "}
+        <p>
+          - No refunds will be issued when the product features are functioning
+          as intended.
+        </p>
+        <h3>
+          <strong>Refund Process</strong>
+        </h3>{" "}
+        <p>
+          To request a refund, please contact our support team at
+          fancyimg@fancyimg.com with your order details and the reason for your
+          refund request. We will review your request and issue a refund if
+          deemed valid based on our policy.
+        </p>{" "}
+        <p>
+          The refund will be processed using the same payment method you used
+          for the original purchase. Please allow 5-7 business days for the
+          refund to reflect in your account.
+        </p>{" "}
+        <h3>
+          <strong>Exceptions</strong>
+        </h3>{" "}
+        <p>
+          Refunds may not be granted in cases of suspected fraud, violations of
+          our Terms of Service, or other abuse of our services. We reserve the
+          right to refuse any refund request at our sole discretion.
+        </p>{" "}
+        <h3>
+          <strong>Changes and Updates</strong>
+        </h3>{" "}
+        <p>
+          We may update or modify this Refund Policy from time to time. Any
+          changes will be posted on this page, and we encourage you to review it
+          periodically.
+        </p>{" "}
+        <p>
+          If you have any further questions regarding our Refund Policy, please
+          don't hesitate to contact our support team.
         </p>
       </div>
     </>
