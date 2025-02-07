@@ -30,6 +30,7 @@ const RemoveBg = observer(({ store, element, elements }) => {
   console.log(element.src);
   // remove bg
   const removeBg = async (element) => {
+    if (typeof window === "undefined") return; // 确保在客户端环境中运行
     const response = await fetch("/api/replacebg", {
       method: "POST",
       headers: {

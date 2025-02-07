@@ -10,7 +10,7 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
       key: "1",
       label: (
         <span>
-          Email: {user.email}
+          Email: {user?.email}
         </span>
       ),
     },
@@ -18,7 +18,7 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
       key: "2",
       label: (
         <span>
-          Credits: {user.credits}
+          Credits: {user?.credits}
         </span>
       ),
     },
@@ -47,6 +47,7 @@ const Header = ({ value = 50, step = ".1", height = null, children }) => {
   const getUser = () => {
     console.log('getuser');
     try {
+      if (typeof window === "undefined") return; // 确保在客户端环境中运行
       let user = JSON.parse(localStorage.getItem("user"));
       let token = localStorage.getItem("token");
       token ? setToken(token) : setToken("");
